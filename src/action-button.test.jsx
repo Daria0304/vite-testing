@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
 import { ActionButton }  from "./App.jsx";
@@ -14,13 +15,19 @@ describe("ActionButton", () => {
     expect(screen.getByTestId("action-button")).toBeInTheDocument();
   });
 
-  // it("should add a name to the list", () => {
-  //   render(<ActionButton text={text} onClick={onClick} />);
+  it("should display a button name", () => {
+    render(<ActionButton text={text} onClick={onClick} />);
 
-  //   userEvent.click(getByTestId("action-button"));
+    expect(screen.getByTestId("action-button").textContent).toBe(text)
+  });
 
-  //   expect(screen.getByTestId("action-button")). ??
-  // });
+  it("should simulate a click event", () => {
+    render(<ActionButton text={text} onClick={onClick} />);
+
+    userEvent.click(screen.getByTestId("action-button"));
+
+    expect(screen.getByTestId("action-button")).toBeCalledTimes(1);
+  });
 });
 
 

@@ -64,13 +64,7 @@ function App() {
             <b>Twoje imie: {name}</b>
           </h3>
         </section>
-
-        <section>
-          <h3>
-            <b>Lista: </b>
-          </h3>
-          <List list={list} handleRemoveClick={handleSubtract} />
-        </section>
+        <List list={list} handleRemoveClick={handleSubtract} />
       </aside>
     </div>
   );
@@ -88,10 +82,11 @@ export const Form = ({ name, counter, handleChange, children }) => {
   return (
     <form data-testid="form" className="container">
       <div>{children}</div>
-      <label>Wpisz swoje imię</label>
+      <label htmlFor="name">Wpisz swoje imię</label>
       <input
         id="name"
         type="text"
+        name="name"
         value={name}
         placeholder=""
         onChange={handleChange}
@@ -107,14 +102,17 @@ export const Form = ({ name, counter, handleChange, children }) => {
 
 export const List = ({ list, handleRemoveClick }) => {
   return (
-    <ul data-testid="list">
-      {list.map((name) => (
-        <li key={name.id}>
-          {name.name}
-          <ActionButton text="x" onClick={() => handleRemoveClick(name.id)} />
-        </li>
-      ))}
-    </ul>
+    <section data-testid="list">
+      <h3 id="names-heading"><b>Lista: </b></h3>
+      <ul aria-labelledby="names-heading">
+        {list.map((name) => (
+          <li key={name.id}>
+            {name.name}
+            <ActionButton text="x" onClick={() => handleRemoveClick(name.id)} />
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 };
 
