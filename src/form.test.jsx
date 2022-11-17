@@ -20,13 +20,13 @@ describe("Form", () => {
     expect(screen.getByTestId("form")).toBeInTheDocument();
   });
 
-  it('should be initially empty for input', () => {
+  it('should initially include "Anna" name', () => {
     render(
       <Form name={name} counter={counter} handleChange={handleChange}>
         {children}
       </Form>
     );
-    expect(screen.getByLabelText('Wpisz swoje imię').value).toBe('');
+    expect(screen.getByLabelText('Wpisz swoje imię').value).toBe('Anna');
   })
 
   it('should be able to type a name', () => {
