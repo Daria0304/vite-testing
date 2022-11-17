@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import "./index.css";
 
 // 1. Napraw niedzialajacy button (+)
@@ -76,17 +76,17 @@ function App() {
   );
 };
 
-const ActionButton = ({ onClick, text }) => {
+export const ActionButton = ({ onClick, text }) => {
   return (
-    <button data-test-id="action-button" type="submit" onClick={onClick}>
+    <button data-testid="action-button" type="submit" onClick={onClick}>
       {text}
     </button>
   );
 };
 
-const Form = ({ name, counter, handleChange, children }) => {
+export const Form = ({ name, counter, handleChange, children }) => {
   return (
-    <form data-test-id="form" className="container">
+    <form data-testid="form" className="container">
       <div>{children}</div>
       <label>Wpisz swoje imię</label>
       <input
@@ -105,9 +105,9 @@ const Form = ({ name, counter, handleChange, children }) => {
   );
 };
 
-const List = ({ list, handleRemoveClick }) => {
+export const List = ({ list, handleRemoveClick }) => {
   return (
-    <ul data-test-id="list">
+    <ul data-testid="list">
       {list.map((name) => (
         <li key={name.id}>
           {name.name}
