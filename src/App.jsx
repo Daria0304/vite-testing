@@ -79,6 +79,7 @@ export const ActionButton = ({ onClick, text }) => {
 };
 
 export const Form = ({ name, counter, handleChange, children }) => {
+  console.log(name)
   return (
     <form data-testid="form" className="container">
       <div>{children}</div>

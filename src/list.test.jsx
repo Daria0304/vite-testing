@@ -24,19 +24,19 @@ describe("List", () => {
     expect(screen.getByTestId("list")).toBeInTheDocument();
   });
 
-  it("should render a list of 2 names", () => {
-    render(<List list={list}>{children}</List>);
-    const list = screen.getByTestId("list")
-    const { getAllByRole } = within(list)
-    const items = getAllByRole("listitem")
+  // it("should render a list of 2 names", () => {
+  //   render(<List list={list}>{children}</List>);
+  //   const list = screen.getByTestId("list")
+  //   const { getAllByRole } = within(list)
+  //   const items = getAllByRole("listitem")
 
-    expect(items.length).toBe(2)
-  });
+  //   expect(items.length).toBe(2)
+  // });
 
-  it("should display names", () => {
-    render(<List list={list}>{children}</List>);
+  // it("should display names", () => {
+  //   render(<List list={list}>{children}</List>);
 
-    const names = screen.getByTestId("list")
-    expect(names).toBe([list.name])
-  });
+  //   const names = screen.getByTestId("list")
+  //   expect(names).toBe([list.name])
+  // });
 });

@@ -6,9 +6,12 @@ import "@testing-library/jest-dom";
 import { ActionButton }  from "./App.jsx";
 
 const text = "Dodaj imię!";
-const onClick = () => {};
+const onClick = jest.fn()
 
 describe("ActionButton", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
   it("should be in the document", () => {
     render(<ActionButton text={text} onClick={onClick} />);
 
@@ -21,12 +24,22 @@ describe("ActionButton", () => {
     expect(screen.getByTestId("action-button").textContent).toBe(text)
   });
 
-  it("should simulate a click event", () => {
+  it("should simulate a click event", async () => {
     render(<ActionButton text={text} onClick={onClick} />);
 
-    userEvent.click(screen.getByTestId("action-button"));
+    await userEvent.click(screen.getByTestId("action-button"));
 
-    expect(screen.getByTestId("action-button")).toBeCalledTimes(1);
+    expect(onClick).toBeCalledTimes(1);
+  });
+
+  it("should simulate a 3 click events", async () => {
+    render(<ActionButton text={text} onClick={onClick} />);
+
+    await userEvent.click(screen.getByTestId("action-button"));
+    await userEvent.click(screen.getByTestId("action-button"));
+    await userEvent.click(screen.getByTestId("action-button"));
+
+    expect(onClick).toBeCalledTimes(3);
   });
 });
 
