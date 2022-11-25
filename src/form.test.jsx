@@ -10,6 +10,9 @@ const counter = 0;
 const handleChange = () => {};
 
 describe("Form", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
   it("should be in the document", () => {
     render(
       <Form name={name} counter={counter} handleChange={handleChange}>
@@ -31,8 +34,8 @@ describe("Form", () => {
       <Form name={name} counter={counter} handleChange={handleChange}>
       </Form>
     );
-    await userEvent.type(screen.getByLabelText('Wpisz swoje imię'), 'Katarzyna')
+    await userEvent.type(screen.getByLabelText('Wpisz swoje imię'), 'Ola')
     screen.debug() 
-    expect(await screen.findByLabelText('Wpisz swoje imię')).toHaveValue('Katarzyna');
+    expect(await screen.findByLabelText('Wpisz swoje imię')).toHaveValue('Ola');
   })
 });
